@@ -2,6 +2,10 @@ class SubmitsController < ApplicationController
   def index
       @submits = Submit.all
   end
+  
+  def show
+     @submit = Submit.find(params[:id])
+   end
    
    def new
       @submit = Submit.new

@@ -11,13 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160906004009) do
+ActiveRecord::Schema.define(version: 20160906025007) do
+
+  create_table "assignments", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "public",      default: true
+    t.text     "description"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "submits", force: :cascade do |t|
     t.string   "name"
     t.string   "attachment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "assignment_id"
   end
+
+  add_index "submits", ["assignment_id"], name: "index_submits_on_assignment_id"
 
 end
